@@ -28,7 +28,7 @@ class UserProfileViewModel extends ChangeNotifier {
     assert(_userProfile != null);
     final newUserProfile = _userProfile!.copyWith(name: newName);
     try {
-      _userProfileRepository.updateUserProfile(newUserProfile);
+      _userProfileRepository.updateUserProfileOnline(newUserProfile);
       _userProfile = newUserProfile;
     } catch (e) {
       // handle error

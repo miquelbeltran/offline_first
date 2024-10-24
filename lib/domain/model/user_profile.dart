@@ -7,5 +7,6 @@ class UserProfile with _$UserProfile {
   const factory UserProfile({
     required String name,
     required String photoUrl,
+    @Default(false) bool synchronized,
   }) = _UserProfile;
 }
