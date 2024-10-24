@@ -3,7 +3,11 @@ import 'package:offline_first/data/repositories/user_profile_repository.dart';
 import 'package:offline_first/domain/model/user_profile.dart';
 
 class UserProfileViewModel extends ChangeNotifier {
-  UserProfileViewModel(this._userProfileRepository);
+  UserProfileViewModel({
+    required UserProfileRepository userProfileRepository,
+  }) : _userProfileRepository = userProfileRepository {
+    load();
+  }
 
   final UserProfileRepository _userProfileRepository;
 
@@ -21,7 +25,15 @@ class UserProfileViewModel extends ChangeNotifier {
   }
 
   Future<void> save(String newName) async {
-    final newUserProfile = _userProfile?.
-    _userProfileRepository.updateUserProfile(_userProfile)
+    assert(_userProfile != null);
+    final newUserProfile = _userProfile!.copyWith(name: newName);
+    try {
+      _userProfileRepository.updateUserProfile(newUserProfile);
+      _userProfile = newUserProfile;
+    } catch (e) {
+      // handle error
+    } finally {
+      notifyListeners();
+    }
   }
 }

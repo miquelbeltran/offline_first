@@ -1,12 +1,12 @@
+import 'package:flutter_test/flutter_test.dart';
 import 'package:offline_first/data/repositories/user_profile_repository.dart';
 import 'package:offline_first/data/services/api_client_service.dart';
 import 'package:offline_first/data/services/database_service.dart';
-import 'package:test/test.dart';
 
 void main() {
   final UserProfileRepository userProfileRepository = UserProfileRepository(
-    ApiClientService(),
-    DatabaseService(),
+    apiClientService: ApiClientService(),
+    databaseService: DatabaseService(),
   );
 
   test('calculate', () async {
